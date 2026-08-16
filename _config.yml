@@ -1,0 +1,108 @@
+# Hexo 站点配置
+# 官方文档: https://hexo.io/docs/configuration.html
+# ★ 想改站名、作者、简介？只需要改下面「Site」区域几行 ★
+
+# Site 站点信息（改成你自己的）
+title: 我的博客
+subtitle: 记录与分享
+description: 一个用 Hexo 搭建的个人博客
+keywords: 博客, 技术, 生活
+author: 博客主人
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL 网址
+# ★ 拿到 EdgeOne Pages 分配的域名后（形如 https://xxx.edgeone.app），把下面 url 改成它 ★
+url: https://example.edgeone.app
+permalink: posts/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+# Directory 目录（一般不用动）
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing 写作（一般不用动）
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# Home page setting 首页（一般不用动）
+index_generator:
+  path: ''
+  per_page: 12
+  order_by: -date
+
+# Category & Tag 分类与标签（一般不用动）
+default_category: 未分类
+category_map:
+tag_map:
+
+# Metadata elements
+meta_generator: true
+
+# Date / Time format 日期格式
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## 用文章里写的日期作为「更新时间」，避免服务器构建时间干扰
+updated_option: 'date'
+
+# Pagination 分页
+per_page: 12
+pagination_dir: page
+
+# Include / Exclude file(s)
+include:
+exclude:
+ignore:
+
+# Extensions 扩展
+## 主题：Butterfly（主题的具体外观配置见 _config.butterfly.yml）
+theme: butterfly
+
+# 搜索功能（配合 Butterfly 的本地搜索，不需要联网服务）
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# RSS 订阅（自动生成 /atom.xml）
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: true
+
+# Deployment 部署（不用动，发布由 EdgeOne Pages 自动完成）
+deploy:
+  type: ''

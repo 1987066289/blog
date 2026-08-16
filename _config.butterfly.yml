@@ -1,0 +1,156 @@
+# ===================================
+# Butterfly 主题外观配置（覆盖文件）
+# 改这里的配置会覆盖主题默认值，主题升级也不受影响
+# 完整可配置项见 node_modules/hexo-theme-butterfly/_config.yml
+# 主题文档: https://butterfly.js.org/
+# ===================================
+
+# ----- 导航栏菜单（/tags 等页面文件已在 source/ 下创建好）-----
+nav:
+  首页: / || fas fa-home
+  文章 || fas fa-list || hide:
+    归档: /archives/ || fas fa-archive
+    标签: /tags/ || fas fa-tags
+    分类: /categories/ || fas fa-folder-open
+  关于: /about/ || fas fa-user
+
+# ----- 深色模式（右上角有切换按钮，跟随系统自动切换）-----
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1 # 1 跟随系统 2 只用亮色 3 只用暗色
+  start: # 亮色起始时间，如 6
+  end: # 暗色起始时间，如 18
+
+# ----- 侧边栏 -----
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 欢迎来到我的博客
+    button:
+      enable: true
+      icon: fab fa-github
+      text: GitHub 主页
+      url: https://github.com/yourname # ★ 改成你的 GitHub 主页
+  card_announcement:
+    enable: true
+    content: 欢迎光临，随便看看～
+  card_recent_post:
+    enable: true
+    limit: 5
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order:
+
+# ----- 头像（★ 换成你自己的图片：把图片放到 source/img/ 下，写 /img/文件名.jpg）-----
+avatar:
+  img: /img/avatar.png
+  effect: false
+
+# ----- 站内搜索（已装 hexo-generator-searchdb，无需联网服务）-----
+search:
+  use: local
+  placeholder: 搜索文章…
+
+# ----- 代码块：一键复制 + 折叠 -----
+code_blocks:
+  theme: mac # 代码窗口样式
+  copy: true
+  language: true
+  fold: unfold
+
+# ----- 文章页功能 -----
+post_meta:
+  page: # 页面
+    date_type: created
+    date_format: date
+    categories: true
+    tags: false
+  post:
+    date_type: both # 显示创建与更新时间
+    date_format: date
+    categories: true
+    tags: true
+
+# 阅读进度条
+reading_progress:
+  enable: true
+  start_px: 0
+  end_px: 100
+  position: top
+  reverse: false
+  color: "#37c6f0"
+  height: 3px
+
+# 文章目录
+toc:
+  post: true
+  page: false
+  number: true
+  expand: true
+  style_simple: false
+
+# 相关文章推荐
+related_post:
+  enable: true
+  limit: 6
+  date_type: created
+
+# 文章版权声明（★ 记得把下面 URL 换成你的最终域名）
+post_copyright:
+  enable: true
+  decode: false
+  copyright_author: 博客主人
+  copyright_author_href: https://github.com/yourname
+  copyright_url: https://example.edgeone.app
+  copyright_info: 转载请附上原文出处链接
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# 打赏二维码（暂时关闭，想开启就改 enable: true 并放图片到 source/img/）
+reward:
+  enable: false
+
+# 文章底部分享
+sharejs:
+  enable: true
+  sites: wechat,qq,qzone,weibo
+
+# ----- 图片懒加载 + 灯箱 -----
+lazyload:
+  enable: true
+  field: site
+  placeholder:
+  blur: true
+
+lightbox: fancybox
+
+# ----- 页脚 -----
+footer:
+  owner:
+    enable: true
+    since: 2026
+  custom_text: 由 Hexo 强力驱动 | 托管于 EdgeOne Pages
+  copyright: false # 不显示默认版权行，用上面 custom_text
+
+# ----- 右下角悬浮按钮 -----
+rightside:
+  position: right
+  percent: true
+
+# ----- 默认收起评论（以后想加评论系统再开，如 Waline/Twikoo/Giscus）-----
+comments:
+  use:
+  text: true
+  lazyload: false

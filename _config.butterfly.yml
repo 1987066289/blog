@@ -18,9 +18,9 @@ nav:
 darkmode:
   enable: true
   button: true
-  autoChangeMode: 1 # 1 跟随系统 2 只用亮色 3 只用暗色
-  start: # 亮色起始时间，如 6
-  end: # 暗色起始时间，如 18
+  autoChangeMode: 1 # 1 跟随系统 2 按 18:00-6:00 自动切换 false 不自动
+  start: # 亮色起始时间（0-24，默认 6）
+  end: # 暗色起始时间（0-24，默认 18）
 
 # ----- 侧边栏 -----
 aside:
@@ -40,7 +40,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: GitHub 主页
-      url: https://github.com/yourname # ★ 改成你的 GitHub 主页
+      link: https://github.com/yourname # ★ 改成你的 GitHub 主页
   card_announcement:
     enable: true
     content: 欢迎光临，随便看看～
@@ -51,7 +51,6 @@ aside:
     enable: true
     post_count: true
     last_push_date: true
-    sort_order:
 
 # ----- 头像（★ 换成你自己的图片：把图片放到 source/img/ 下，写 /img/文件名.jpg）-----
 avatar:
@@ -60,19 +59,24 @@ avatar:
 
 # ----- 站内搜索（已装 hexo-generator-searchdb，无需联网服务）-----
 search:
-  use: local
+  use: local_search
   placeholder: 搜索文章…
+  local_search:
+    top_n_per_article: 1
 
-# ----- 代码块：一键复制 + 折叠 -----
+# ----- 代码块：Mac 窗口样式 + 一键复制 -----
 code_blocks:
-  theme: mac # 代码窗口样式
+  theme: light # 代码配色: darker / pale night / light / ocean / false
+  macStyle: true # Mac 风格窗口圆点
+  height_limit: false
+  word_wrap: false
   copy: true
   language: true
-  fold: unfold
+  shrink: false # false 默认展开，true 默认折叠
 
-# ----- 文章页功能 -----
+# ----- 文章页信息显示 -----
 post_meta:
-  page: # 页面
+  page:
     date_type: created
     date_format: date
     categories: true
@@ -83,38 +87,26 @@ post_meta:
     categories: true
     tags: true
 
-# 阅读进度条
-reading_progress:
-  enable: true
-  start_px: 0
-  end_px: 100
-  position: top
-  reverse: false
-  color: "#37c6f0"
-  height: 3px
-
-# 文章目录
+# ----- 文章目录 -----
 toc:
   post: true
   page: false
   number: true
   expand: true
   style_simple: false
+  scroll_percent: true
 
-# 相关文章推荐
+# ----- 相关文章推荐 -----
 related_post:
   enable: true
   limit: 6
   date_type: created
 
-# 文章版权声明（★ 记得把下面 URL 换成你的最终域名）
+# ----- 文章版权声明（作者与链接自动取自 _config.yml 的 author 和 url）-----
 post_copyright:
   enable: true
   decode: false
-  copyright_author: 博客主人
-  copyright_author_href: https://github.com/yourname
-  copyright_url: https://example.edgeone.app
-  copyright_info: 转载请附上原文出处链接
+  author_href: https://github.com/yourname # ★ 改成你的 GitHub 主页
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -122,17 +114,18 @@ post_copyright:
 reward:
   enable: false
 
-# 文章底部分享
-sharejs:
-  enable: true
-  sites: wechat,qq,qzone,weibo
+# ----- 文章底部分享按钮 -----
+share:
+  use: sharejs
+  sharejs:
+    sites: wechat,qq,qzone,weibo
 
-# ----- 图片懒加载 + 灯箱 -----
+# ----- 图片懒加载 + 点击放大 -----
 lazyload:
   enable: true
   field: site
   placeholder:
-  blur: true
+  blur: false
 
 lightbox: fancybox
 
@@ -141,16 +134,13 @@ footer:
   owner:
     enable: true
     since: 2026
+  copyright:
+    enable: false
   custom_text: 由 Hexo 强力驱动 | 托管于 EdgeOne Pages
-  copyright: false # 不显示默认版权行，用上面 custom_text
 
-# ----- 右下角悬浮按钮 -----
-rightside:
-  position: right
-  percent: true
+# ----- 右下角按钮 -----
+rightside_scroll_percent: true # 回到顶部按钮显示阅读百分比
 
-# ----- 默认收起评论（以后想加评论系统再开，如 Waline/Twikoo/Giscus）-----
+# ----- 评论系统（默认关闭，以后想加再开，如 Waline/Twikoo/Giscus）-----
 comments:
   use:
-  text: true
-  lazyload: false

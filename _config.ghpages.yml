@@ -1,0 +1,4 @@
+# GitHub Pages 镜像站的配置覆盖（仅在该工作流构建时与 _config.yml 合并生效）
+# 因为 Pages 地址带 /blog 路径，需要覆盖 url 和 root
+url: https://1987066289.github.io/blog
+root: /blog/

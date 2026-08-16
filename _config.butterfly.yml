@@ -40,7 +40,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: GitHub 主页
-      link: https://github.com/yourname # ★ 改成你的 GitHub 主页
+      link: https://github.com/1987066289
   card_announcement:
     enable: true
     content: 欢迎光临，随便看看～
@@ -106,7 +106,7 @@ related_post:
 post_copyright:
   enable: true
   decode: false
-  author_href: https://github.com/yourname # ★ 改成你的 GitHub 主页
+  author_href: https://github.com/1987066289
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 

@@ -1,6 +1,11 @@
 # 我的个人博客
 
-由 **Hexo + Butterfly** 驱动，代码存放在 GitHub，由**腾讯 EdgeOne Pages** 自动构建发布（免费、国内访问快）。
+由 **Hexo + Butterfly** 驱动，代码存放在 GitHub，由**腾讯 EdgeOne Pages** 自动构建发布（免费）。
+
+- **线上地址**：<https://lcs-blog-3rydeodl.edgeone.cool>
+  - 海外网络可直接访问；**中国大陆网络直接访问会返回 401**（平台对默认域名的规则）
+  - 大陆临时查看：到 [EdgeOne Pages 控制台](https://console.cloud.tencent.com/edgeone/makers/project/makers-r4lbbqvgpcly/index) 点右上角「预览」生成 3 小时有效链接
+  - 想让大陆读者稳定访问：绑定自己的域名（加速区域选「全球不含中国大陆」可免备案），见控制台「域名管理」
 
 你每次修改这个仓库（比如新增一篇文章），EdgeOne Pages 都会自动重新构建博客，约一分钟后生效。
 

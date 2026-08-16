@@ -7,13 +7,12 @@ title: 我的博客
 subtitle: 记录与分享
 description: 一个用 Hexo 搭建的个人博客
 keywords: 博客, 技术, 生活
-author: 博客主人
+author: ChunShuo LI
 language: zh-CN
 timezone: Asia/Shanghai
 
-# URL 网址
-# ★ 拿到 EdgeOne Pages 分配的域名后（形如 https://xxx.edgeone.app），把下面 url 改成它 ★
-url: https://example.edgeone.app
+# URL 网址（EdgeOne Pages 分配的默认域名）
+url: https://lcs-blog-3rydeodl.edgeone.cool
 permalink: posts/:title/
 permalink_defaults:
 pretty_urls:

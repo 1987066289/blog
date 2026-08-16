@@ -40,20 +40,27 @@
     requestAnimationFrame(frame);
   }
 
-  /* 第一次向下滚轮：瞬间跳到内容区，动画期间锁定滚动 */
+  /* 第一次向下滚轮：瞬间跳到内容区，动画期间锁定滚动
+   * 仅首页（存在 site-info 时）拦截；文章页直接放行，避免吞掉正常滚动 */
   window.addEventListener('wheel', function (ev) {
-    if (finished) return;
     if (locked) { ev.preventDefault(); return; }
-    if (ev.deltaY > 2 && !ev.ctrlKey) { ev.preventDefault(); dismiss(); }
+    if (finished) return;
+    if (ev.deltaY <= 2 || ev.ctrlKey) return;
+    if (!document.getElementById('site-info')) return;
+    ev.preventDefault();
+    dismiss();
   }, { passive: false });
 
-  /* 触屏：第一次下滑手势 */
+  /* 触屏：第一次下滑手势（同样仅首页拦截） */
   var touchY = null;
   window.addEventListener('touchstart', function (ev) { touchY = ev.touches[0].clientY; }, { passive: true });
   window.addEventListener('touchmove', function (ev) {
-    if (finished) return;
     if (locked) { ev.preventDefault(); return; }
-    if (touchY !== null && ev.touches[0].clientY < touchY - 15) { ev.preventDefault(); dismiss(); }
+    if (finished) return;
+    if (touchY === null || ev.touches[0].clientY >= touchY - 15) return;
+    if (!document.getElementById('site-info')) return;
+    ev.preventDefault();
+    dismiss();
   }, { passive: false });
 
   /* 键盘翻页 / 拖动滚动条兜底 */

@@ -6,6 +6,11 @@ tags:
   - Markdown
 categories:
   - 博客使用
+password: "721196"
+abstract: '<div class="encryption-notice"><i class="fas fa-lock"></i> 此文已加密，输入验证码后可见全文</div>'
+message: '<i class="fas fa-key"></i> 这是一篇私密文章，请输入验证码'
+wrong_pass_message: '验证码不正确，请重试'
+description: 🔒 此文已加密，输入验证码后可见全文
 ---
 
 这篇文章展示一篇博客文章的标准写法，照着抄就能发新文章。

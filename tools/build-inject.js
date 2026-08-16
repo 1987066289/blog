@@ -27,6 +27,7 @@ function onelineCSS(file) {
 }
 
 const js = onelineJS('hero-dismiss.readable.js');
+const jsEnhance = onelineJS('site-enhance.js');
 const heroCss = onelineCSS('hero-dismiss.readable.css');
 const siteCss = onelineCSS('site-style.css');
 const allCss = heroCss + ' ' + siteCss;
@@ -36,12 +37,13 @@ let cfg = fs.readFileSync(cfgPath, 'utf8');
 const start = cfg.indexOf('# ----- 自定义注入');
 if (start < 0) throw new Error('未找到注入块标记');
 const lines = [
-  '# ----- 自定义注入：横幅跳转 + 精装修样式（源码在 tools/，改完运行 node tools/build-inject.js 重新生成）-----',
+  '# ----- 自定义注入：横幅跳转 + 精装修样式 + 心理增强（源码在 tools/，改完运行 node tools/build-inject.js 重新生成）-----',
   'inject:',
   '  head:',
   "    - '<style>" + allCss + "</style>'",
   '  bottom:',
   "    - '<script>" + js + "</script>'",
+  "    - '<script>" + jsEnhance + "</script>'",
   ''
 ];
 fs.writeFileSync(cfgPath, cfg.slice(0, start) + lines.join('\n'));
@@ -49,4 +51,4 @@ fs.writeFileSync(cfgPath, cfg.slice(0, start) + lines.join('\n'));
 const yaml = require(path.join(root, 'node_modules', 'js-yaml'));
 const parsed = yaml.load(fs.readFileSync(cfgPath, 'utf8'));
 console.log('inject 重建完成: head', parsed.inject.head.length, '条 / bottom', parsed.inject.bottom.length, '条');
-console.log('CSS 总长', allCss.length, '字符, JS 长度', js.length, '字符');
+console.log('CSS 总长', allCss.length, '字符, JS1', js.length, '字符, JS2', jsEnhance.length, '字符');

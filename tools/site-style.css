@@ -238,3 +238,186 @@ body.hero-gone #nav {
   color: #9fc6ff;
   font-weight: 300;
 }
+
+/* ============================================
+   第二轮：炫酷而沉稳 + 心理学引导
+   ============================================ */
+
+/* ---------- 12. Hero 漂浮光斑（沉稳的动态感）---------- */
+#page-header { position: relative; }
+#page-header::before,
+#page-header::after {
+  content: "";
+  position: absolute;
+  width: 46vw;
+  height: 46vw;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+#page-header::before {
+  background: radial-gradient(circle, rgba(120, 190, 255, 0.22) 0%, transparent 65%);
+  top: -18%;
+  left: -8%;
+  animation: floatBlob 16s ease-in-out infinite alternate;
+}
+#page-header::after {
+  background: radial-gradient(circle, rgba(190, 140, 255, 0.20) 0%, transparent 65%);
+  bottom: -22%;
+  right: -10%;
+  animation: floatBlob 19s ease-in-out infinite alternate-reverse;
+}
+@keyframes floatBlob {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(6vw, 4vh) scale(1.12); }
+}
+#site-info { z-index: 2; }
+
+/* ---------- 13. 建站徽章（可信度暗示）---------- */
+#site-uptime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 1.4em;
+  padding: 0.35em 1.1em;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.uptime-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7dffb3;
+  box-shadow: 0 0 0 0 rgba(125, 255, 179, 0.6);
+  animation: uptimePulse 2s ease-out infinite;
+}
+@keyframes uptimePulse {
+  0% { box-shadow: 0 0 0 0 rgba(125, 255, 179, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(125, 255, 179, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(125, 255, 179, 0); }
+}
+
+/* ---------- 14. 「开始阅读」CTA 按钮（行动号召）---------- */
+#scroll-down {
+  width: auto !important;
+  height: auto !important;
+  padding: 0.55em 1.6em;
+  margin-top: 1.6em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+#scroll-down::before {
+  content: "开始阅读";
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.15em;
+}
+#scroll-down .scroll-down-effects {
+  position: static !important;
+  left: auto !important;
+  margin: 0 auto;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  animation: bounceDown 1.8s ease-in-out infinite;
+}
+#scroll-down:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.26);
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
+/* ---------- 15. 顶部阅读进度条（进度感知）---------- */
+#reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 1000;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, #4e7cff, #9a6bff, #4ad0c4);
+  box-shadow: 0 0 10px rgba(122, 155, 255, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* ---------- 16. 卡片封面扫光（克制的炫）---------- */
+#recent-posts .post_cover { position: relative; }
+#recent-posts .post_cover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+#recent-posts .recent-post-item:hover .post_cover::after {
+  animation: coverShine 0.9s ease forwards;
+}
+@keyframes coverShine {
+  to { left: 130%; }
+}
+
+/* ---------- 17. 卡片标题渐变文字（悬停）---------- */
+#recent-posts .recent-post-item:hover .article-title {
+  background: linear-gradient(92deg, #4e7cff, #9a6bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] #recent-posts .recent-post-item:hover .article-title {
+  background: linear-gradient(92deg, #8fb0ff, #c9a8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- 18. 目录当前项渐变高亮 ---------- */
+#article-container .toc-link.active,
+.toc-link.active {
+  font-weight: 600;
+  color: #5b7bd5 !important;
+  border-left-color: #5b7bd5 !important;
+}
+
+/* ---------- 19. 深色模式 hero 更深邃 ---------- */
+[data-theme="dark"] #page-header {
+  background: linear-gradient(-45deg, #171d33, #2c2749, #3d2f5c, #1c3247) !important;
+  background-size: 400% 400% !important;
+}
+
+/* ---------- 20. 侧边栏卡片入场动画 ---------- */
+#aside-content .card-widget {
+  animation: cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: 0.3s;
+}
+
+/* ---------- 21. 图片悬停微亮 ---------- */
+#article-container img {
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+#article-container img:hover {
+  filter: brightness(1.05);
+}

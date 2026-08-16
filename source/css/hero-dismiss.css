@@ -1,9 +1,0 @@
-/* 配合 hero-dismiss.js：横幅收起后的页面状态 */
-body.hero-gone #page-header { height: 0 !important; overflow: hidden; }
-body.hero-gone #site-info,
-body.hero-gone #scroll-down { display: none !important; }
-body.hero-gone #nav { position: fixed !important; top: 0; }
-body.hero-gone #nav:not(.fixed) { background: var(--card-bg); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
-body.hero-gone #nav:not(.fixed) a,
-body.hero-gone #nav:not(.fixed) #site-name,
-body.hero-gone #nav:not(.fixed) .site-page { color: var(--font-color) !important; }

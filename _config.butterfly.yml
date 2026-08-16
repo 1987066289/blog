@@ -144,3 +144,49 @@ rightside_scroll_percent: true # 回到顶部按钮显示阅读百分比
 # ----- 评论系统（默认关闭，以后想加再开，如 Waline/Twikoo/Giscus）-----
 comments:
   use:
+
+# ----- 自定义注入：首页大横幅首次下滚后向上收起，本次访问内不再出现 -----
+inject:
+  head:
+    - '<style>body.hero-gone #page-header{height:0!important;overflow:hidden}body.hero-gone #site-info,body.hero-gone #scroll-down{display:none!important}body.hero-gone #nav{position:fixed!important;top:0}body.hero-gone #nav:not(.fixed){background:var(--card-bg);box-shadow:0 1px 4px rgba(0,0,0,.15)}body.hero-gone #nav:not(.fixed) a,body.hero-gone #nav:not(.fixed) #site-name,body.hero-gone #nav:not(.fixed) .site-page{color:var(--font-color)!important}</style>'
+  bottom:
+    - '<script>
+(function(){
+  var KEY = "heroGone";
+  var body = document.body;
+  function applyGone(){
+    body.classList.add("hero-gone");
+    var h = document.getElementById("page-header");
+    if(h) h.style.height = "";
+  }
+  try{
+    if(sessionStorage.getItem(KEY) === "1"){ applyGone(); }
+  }catch(e){}
+  var done = false;
+  function dismiss(){
+    if(done) return;
+    var header = document.getElementById("page-header");
+    var siteInfo = document.getElementById("site-info");
+    if(!header || !siteInfo) return; // 仅首页（有大标题横幅）生效
+    done = true;
+    try{ sessionStorage.setItem(KEY, "1"); }catch(e){}
+    var h0 = header.offsetHeight;
+    var y0 = window.scrollY || document.documentElement.scrollTop;
+    var dur = 550, t0 = null;
+    function frame(now){
+      if(t0 === null) t0 = now;
+      var p = Math.min(1, (now - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3); // easeOutCubic：先快后慢，“弹走”感
+      header.style.overflow = "hidden";
+      header.style.height = (h0 * (1 - e)) + "px";
+      window.scrollTo(0, y0 + h0 * e); // 内容同步上移补位，画面不跳
+      if(p < 1){ requestAnimationFrame(frame); }
+      else{ applyGone(); }
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener("scroll", function(){
+    if((window.scrollY || document.documentElement.scrollTop) > 60) dismiss();
+  }, { passive: true });
+})();
+</script>'

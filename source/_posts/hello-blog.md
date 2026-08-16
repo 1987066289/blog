@@ -5,7 +5,7 @@ tags:
   - 公告
 categories:
   - 生活随笔
-cover: /img/avatar.png
+cover: /img/cover-1.png
 top: true
 ---
 

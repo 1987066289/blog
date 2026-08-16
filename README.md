@@ -1,13 +1,29 @@
 # 我的个人博客
 
-由 **Hexo + Butterfly** 驱动，代码存放在 GitHub，由**腾讯 EdgeOne Pages** 自动构建发布（免费）。
+由 **Hexo + Butterfly** 驱动，代码存放在 GitHub，由**腾讯 EdgeOne Pages** 和 **GitHub Pages** 双平台自动构建发布（均免费）。
 
-- **线上地址**：<https://lcs-blog-3rydeodl.edgeone.cool>
-  - 海外网络可直接访问；**中国大陆网络直接访问会返回 401**（平台对默认域名的规则）
-  - 大陆临时查看：到 [EdgeOne Pages 控制台](https://console.cloud.tencent.com/edgeone/makers/project/makers-r4lbbqvgpcly/index) 点右上角「预览」生成 3 小时有效链接
-  - 想让大陆读者稳定访问：绑定自己的域名（加速区域选「全球不含中国大陆」可免备案），见控制台「域名管理」
+## 两个访问地址
 
-你每次修改这个仓库（比如新增一篇文章），EdgeOne Pages 都会自动重新构建博客，约一分钟后生效。
+| 地址 | 适合 | 说明 |
+| ---- | ---- | ---- |
+| <https://1987066289.github.io/blog/> | 海外及国内（时快时慢） | GitHub Pages 镜像，大陆可直接访问但速度不稳定 |
+| <https://lcs-blog-3rydeodl.edgeone.cool> | 仅海外网络 | EdgeOne Pages 主站，大陆直接访问返回 401（平台规则） |
+
+> 大陆临时查看主站：到 [EdgeOne Pages 控制台](https://console.cloud.tencent.com/edgeone/makers/project/makers-r4lbbqvgpcly/index) 点右上角「预览」生成 3 小时有效链接。
+> 想让大陆读者稳定快速访问：绑自己的域名（免费方案见下），或以后购买域名。
+
+## 双平台自动部署
+
+- **EdgeOne Pages**（主站）：连接 GitHub 仓库，每次推送自动构建
+- **GitHub Pages**（镜像）：`.github/workflows/deploy-pages.yml` 工作流，每次推送自动构建；站点配置覆盖见 `_config.ghpages.yml`
+- 两边构建互不影响：主站用 `_config.yml`，镜像用 `_config.yml + _config.ghpages.yml` 合并配置
+
+## 免费获得自己域名的路径（可选升级）
+
+1. 申请 [eu.org](https://nic.eu.org/) 免费域名（如 `你的名字.eu.org`，需人工审核数天~数周）
+2. 到 [Cloudflare](https://www.cloudflare.com/) 免费托管解析
+3. EdgeOne 控制台「域名管理」绑定（加速区域选「全球不含中国大陆」可免备案）
+4. 改 `_config.yml` 里的 `url` 并提交即可
 
 ---
 

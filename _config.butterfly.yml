@@ -35,7 +35,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 欢迎来到我的博客
+    description: lcs的博客
     button:
       enable: true
       icon: fab fa-github

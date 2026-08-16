@@ -421,3 +421,14 @@ body.hero-gone #nav {
 #article-container img:hover {
   filter: brightness(1.05);
 }
+
+/* ---------- 22. 加密文章锁定提示 ---------- */
+#hbe-lock-tip {
+  color: #e05656;
+  font-size: 0.88rem;
+  margin-top: 0.5em;
+  letter-spacing: 0.02em;
+}
+[data-theme="dark"] #hbe-lock-tip {
+  color: #ff8a8a;
+}

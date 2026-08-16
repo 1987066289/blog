@@ -33,4 +33,72 @@
   window.addEventListener("scroll", updateProgress, { passive: true });
   window.addEventListener("resize", updateProgress);
   updateProgress();
+
+  /* ---------- 3. 加密文章防暴力尝试（渐进锁定）---------- */
+  function guardEncryptedPost() {
+    var input = document.getElementById("hbePass");
+    if (!input || input.__guarded) return;
+    input.__guarded = true;
+
+    var KEY = "hbeTries";
+    var tries = 0;
+    try { tries = parseInt(sessionStorage.getItem(KEY) || "0", 10) || 0; } catch (e) { tries = 0; }
+    var locked = false;
+    var lastAttempt = 0;
+
+    function lockFor(seconds) {
+      locked = true;
+      input.disabled = true;
+      var form = input.closest("form");
+      var btn = form ? form.querySelector("button") : null;
+      if (btn) btn.disabled = true;
+      var tip = document.getElementById("hbe-lock-tip");
+      if (!tip && input.parentNode) {
+        tip = document.createElement("div");
+        tip.id = "hbe-lock-tip";
+        input.parentNode.insertBefore(tip, input.nextSibling);
+      }
+      var endAt = Date.now() + seconds * 1000;
+      (function tick() {
+        var left = Math.ceil((endAt - Date.now()) / 1000);
+        if (left > 0) {
+          if (tip) tip.textContent = "尝试次数过多，请 " + left + " 秒后再试";
+          setTimeout(tick, 500);
+        } else {
+          if (tip) tip.textContent = "";
+          locked = false;
+          input.disabled = false;
+          if (btn) btn.disabled = false;
+          if (input.focus) input.focus();
+        }
+      })();
+    }
+
+    function onAttempt() {
+      var now = Date.now();
+      if (locked || now - lastAttempt < 400) return;
+      lastAttempt = now;
+      /* 1.6s 后若输入框仍在，说明密码错误（正确时整个输入区会被替换为正文） */
+      setTimeout(function () {
+        if (!document.getElementById("hbePass")) return;
+        tries += 1;
+        try { sessionStorage.setItem(KEY, String(tries)); } catch (e) {}
+        if (tries >= 5) {
+          lockFor(Math.min(300, 30 * Math.pow(2, tries - 5)));
+        }
+      }, 1600);
+    }
+
+    var form = input.closest("form");
+    if (form) {
+      form.addEventListener("submit", onAttempt, { passive: true });
+      var btn = form.querySelector("button");
+      if (btn) btn.addEventListener("click", onAttempt, { passive: true });
+    }
+    input.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter") onAttempt();
+    });
+  }
+  guardEncryptedPost();
+  document.addEventListener("pjax:complete", guardEncryptedPost);
 })();
